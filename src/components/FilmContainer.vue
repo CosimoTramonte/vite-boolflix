@@ -25,6 +25,7 @@ export default {
 
             <Card 
             v-for="(card,index) in store.resultArrayFilm" :key="index"
+            :image="card.poster_path"
             :title="card.title"
             :originalTitle= "card.original_title"
             :language= "card.original_language"
