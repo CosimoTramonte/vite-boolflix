@@ -17,7 +17,7 @@ export default {
 
         <h4>{{ title }}</h4>
         <h5>{{ originalTitle }}</h5>
-        <h6>{{ language }}</h6>
+        <img :src="`flags/language-${language}.svg`" :alt="language">
         <h6>{{ vote }}</h6>
 
     </div>
@@ -30,6 +30,10 @@ export default {
         width: calc(100% / 4 - 20px);
         margin: 20px 10px;
         border: 1px solid black;
+
+        img{
+            width: 30px;
+        }
     }
 
 </style>

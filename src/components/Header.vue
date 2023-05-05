@@ -11,6 +11,9 @@ export default {
         researchMovie() {
             this.$emit('startResearchMovie');
         },
+        researchTVSeries(){
+            this.$emit('startResearchTVSeries')
+        }
     }
 }
 </script>
@@ -23,7 +26,7 @@ export default {
             <img src="../../public/logo-boolflix_720.png" alt="logo">
         </div>
 
-        <SearchPart @startResearch="researchMovie"/>
+        <SearchPart @startResearchFilm="researchMovie" @startResearchTVSeries="researchTVSeries"/>
     </div>
 
 </template>

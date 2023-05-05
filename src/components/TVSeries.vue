@@ -4,7 +4,7 @@ import {store} from "../data/store";
 import Card from "./partials/Card.vue"
 
 export default {
-    name:"CardContainer",
+    name:"TVSeries",
     components:{
         Card
     },
@@ -17,16 +17,15 @@ export default {
 </script>
 
 <template>
-
-    <div class="container">
-        <h1>Film Cercati</h1>
+        <div class="container">
+        <h1>TV Series Cercati</h1>
 
         <div class="card-container d-flex flex-wrap">
 
             <Card 
-            v-for="(card,index) in store.resultArrayFilm" :key="index"
-            :title="card.title"
-            :originalTitle= "card.original_title"
+            v-for="(card,index) in store.resultArrayTVSeries" :key="index"
+            :title="card.name"
+            :originalTitle= "card.original_name"
             :language= "card.original_language"
             :vote= "card.vote_average"
             />
@@ -34,7 +33,6 @@ export default {
         </div>
 
     </div>
-  
 </template>
 
 <style>

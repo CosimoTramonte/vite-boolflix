@@ -2,6 +2,7 @@
 <script>
 import Header from "./components/Header.vue";
 import FilmContainer from "./components/FilmContainer.vue";
+import TVSeries from "./components/TVSeries.vue";
 import {store} from "./data/store";
 import axios from "axios";
 
@@ -15,32 +16,49 @@ export default {
   },
   components:{
     Header,
-    FilmContainer
+    FilmContainer,
+    TVSeries
   },
   methods:{
-    getApi(){
+    getApiFilm(){
       axios.get(store.apiUrlMovies, {
         params:{
-          query:store.FilmTitle,
+          query:store.SearchTitle,
           language: "it",
         }
       })
       .then(result=>{
-        store.resultArray = result.data.results;
-        console.log(store.resultArray);
+        store.resultArrayFilm = result.data.results;
+        console.log(store.resultArrayFilm, store.SearchTitle);
+      })
+    },
+
+    getApiTVSeries(){
+      axios.get(store.apiUrlTVSeries, {
+        params:{
+          query:store.SearchTitle,
+          language: "it",
+        }
+      })
+      .then(result =>{
+        store.resultArrayTVSeries = result.data.results;
+        console.log(store.resultArrayTVSeries, store.SearchTitle);
       })
     }
   },
   mounted(){
-    this.getApi();
+    this.getApiFilm();
+    this.getApiTVSeries();
   }
 }
 </script>
 
 <template>
 
-  <Header @startResearchMovie="getApi" />
+  <Header @startResearchMovie="getApiFilm" @startResearchTVSeries="getApiTVSeries"/>
   <FilmContainer/>
+  <TVSeries/>
+
 </template>
 
 <style lang="scss">

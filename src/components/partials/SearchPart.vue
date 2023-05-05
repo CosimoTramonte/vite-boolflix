@@ -15,8 +15,8 @@ export default {
 <template>
 
     <div>
-        <input v-model="store.FilmTitle" type="text">
-        <button class="btn btn-dark mx-3" @click="$emit('startResearch')">Search</button>
+        <input v-model="store.SearchTitle" type="text">
+        <button class="btn btn-dark mx-3" @click="$emit('startResearchFilm'), $emit('startResearchTVSeries')">Search</button>
     </div>
 
 </template>
