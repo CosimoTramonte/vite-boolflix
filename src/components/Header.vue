@@ -1,18 +1,23 @@
 
 <script>
 import SearchPart from "./partials/SearchPart.vue"
+import NavBar from "./partials/NavBar.vue";
 
 export default {
     name: "Header",
     components:{
-        SearchPart
+        SearchPart,
+        NavBar
     },
     methods: {
         researchMovie() {
             this.$emit('startResearchMovie');
         },
         researchTVSeries(){
-            this.$emit('startResearchTVSeries')
+            this.$emit('startResearchTVSeries');
+        },
+        researchPopularMovies(){
+            this.$emit('researchPopularMovie')
         }
     }
 }
@@ -20,12 +25,14 @@ export default {
 
 <template>
 
-    <div class="ct-container d-flex align-items-center justify-content-between mx-5">
+    <div class="ct-container d-flex align-items-center justify-content-between px-5">
 
         <div class="image-div">
             <img src="../../public/logo-boolflix_720.png" alt="logo">
         </div>
 
+        <NavBar @startResearchPopularFilm="researchPopularMovies" />
+        
         <SearchPart @startResearchFilm="researchMovie" @startResearchTVSeries="researchTVSeries"/>
     </div>
 
@@ -35,6 +42,7 @@ export default {
 
     .ct-container{
         height: 70px;
+        background-color: #0B0B0B;
 
         .image-div{
             height: 100%;
@@ -46,6 +54,7 @@ export default {
                 object-fit: contain;
             }
         }
+        
     }
 
 </style>

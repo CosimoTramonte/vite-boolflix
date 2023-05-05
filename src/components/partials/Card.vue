@@ -26,7 +26,6 @@ export default {
             <span v-for="(star,index) in (5 - vote)" :key="index"><i class="fa-solid fa-star"></i></span>
         </div>
         
-
     </div>
   
 </template>

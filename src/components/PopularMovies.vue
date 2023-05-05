@@ -1,10 +1,10 @@
 
 <script>
 import {store} from "../data/store";
-import Card from "./partials/Card.vue"
+import Card from "./partials/Card.vue";
 
 export default {
-    name:"TVSeries",
+    name: "PopularMovies",
     components:{
         Card
     },
@@ -17,16 +17,17 @@ export default {
 </script>
 
 <template>
+
     <div class="container">
-        <h1>TV Series Cercati</h1>
+        <h1>Film Popolari</h1>
 
         <div class="card-container d-flex flex-wrap">
 
             <Card 
-            v-for="(card,index) in store.resultArrayTVSeries" :key="index"
+            v-for="(card,index) in store.resultArrayPopularMovies" :key="index"
             :image="card.poster_path"
-            :title="card.name"
-            :originalTitle= "card.original_name"
+            :title="card.title"
+            :originalTitle= "card.original_title"
             :language= "card.original_language"
             :vote= "Math.round(card.vote_average/2)"
             />
@@ -34,6 +35,7 @@ export default {
         </div>
 
     </div>
+
 </template>
 
 <style>

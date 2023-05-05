@@ -3,6 +3,7 @@
 import Header from "./components/Header.vue";
 import FilmContainer from "./components/FilmContainer.vue";
 import TVSeries from "./components/TVSeries.vue";
+import PopularMovies from "./components/PopularMovies.vue"
 import {store} from "./data/store";
 import axios from "axios";
 
@@ -17,9 +18,25 @@ export default {
   components:{
     Header,
     FilmContainer,
-    TVSeries
+    TVSeries,
+    PopularMovies
   },
   methods:{
+    getApiPopularMovies(){
+      store.resultArrayFilm=[];
+      store.resultArrayTVSeries=[];
+      axios.get(store.apiUrlPopularMovies, {
+        params:{
+          language: "it",
+          page: 1
+        }
+      })
+      .then(result =>{
+        store.resultArrayPopularMovies = result.data.results;
+        console.log(store.resultArrayPopularMovies);
+      })
+    },
+
     getApiFilm(){
       axios.get(store.apiUrlMovies, {
         params:{
@@ -49,15 +66,17 @@ export default {
   mounted(){
     this.getApiFilm();
     this.getApiTVSeries();
+    this.getApiPopularMovies()
   }
 }
 </script>
 
 <template>
 
-  <Header @startResearchMovie="getApiFilm" @startResearchTVSeries="getApiTVSeries"/>
-  <FilmContainer/>
-  <TVSeries/>
+  <Header @startResearchMovie="getApiFilm" @startResearchTVSeries="getApiTVSeries" @researchPopularMovie="getApiPopularMovies"/>
+  <FilmContainer v-if="store.resultArrayFilm.length >= 1"/>
+  <TVSeries v-if="store.resultArrayTVSeries.length >= 1"/>
+  <PopularMovies v-else/>
 
 </template>
 
