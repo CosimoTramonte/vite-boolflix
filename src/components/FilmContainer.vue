@@ -29,7 +29,7 @@ export default {
             :title="card.title"
             :originalTitle= "card.original_title"
             :language= "card.original_language"
-            :vote= "card.vote_average"
+            :vote= "Math.round(card.vote_average/2)"
             />
 
         </div>

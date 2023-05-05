@@ -14,14 +14,18 @@ export default {
 
 <template>
 
-    <div class="ct-card">
+    <div class="ct-card d-flex flex-column align-items-center">
 
         <img class="w-100" v-if="image == null" src="../../../public/NoImage.png" alt="NoImage">
         <img v-else class="w-100" :src="`https://image.tmdb.org/t/p/w780${image}`" :alt="title">
         <h4>{{ title }}</h4>
         <h5>{{ originalTitle }}</h5>
         <img :src="`flags/language-${language}.svg`" :alt="language">
-        <h6>{{ vote }}</h6>
+        <div>
+            <span v-for="(star,index) in vote" :key="index"><i class="fa-solid fa-star vote-star"></i></span>
+            <span v-for="(star,index) in (5 - vote)" :key="index"><i class="fa-solid fa-star"></i></span>
+        </div>
+        
 
     </div>
   
@@ -36,6 +40,10 @@ export default {
 
         img{
             width: 30px;
+        }
+
+        .vote-star{
+            color: #FFB02E;
         }
     }
 
