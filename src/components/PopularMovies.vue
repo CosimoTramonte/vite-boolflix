@@ -2,11 +2,24 @@
 <script>
 import {store} from "../data/store";
 import Card from "./partials/Card.vue";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+
 
 export default {
     name: "PopularMovies",
     components:{
-        Card
+        Card,
+        Swiper,
+        SwiperSlide
+    },
+    setup() {
+      return {
+        modules: [Pagination],
+      };
     },
     data(){
         return{
@@ -23,14 +36,40 @@ export default {
 
         <div class="card-container d-flex flex-wrap">
 
-            <Card 
-            v-for="(card,index) in store.resultArrayPopularMovies" :key="index"
-            :image="card.poster_path"
-            :title="card.title"
-            :originalTitle= "card.original_title"
-            :language= "card.original_language"
-            :vote= "Math.round(card.vote_average/2)"
-            />
+            <swiper
+            :slidesPerView="1"
+            :spaceBetween="30"
+            :pagination="{
+            clickable: true,
+            }"
+            :breakpoints="{
+            '640': {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            '768': {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            },
+            '1024': {
+                slidesPerView: 5,
+                spaceBetween: 50,
+            },
+            }"
+            :modules="modules"
+            class="mySwiper"
+            >
+                <swiper-slide v-for="(card,index) in store.resultArrayPopularMovies" :key="index">
+                    <Card 
+                        :image="card.poster_path"
+                        :title="card.title"
+                        :originalTitle= "card.original_title"
+                        :language= "card.original_language"
+                        :vote= "Math.round(card.vote_average/2)"
+                    />
+                </swiper-slide>
+
+            </swiper>
 
         </div>
 
@@ -38,6 +77,4 @@ export default {
 
 </template>
 
-<style>
-
-</style>
+<style lang="scss" scoped></style>
