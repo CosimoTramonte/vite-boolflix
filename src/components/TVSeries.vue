@@ -36,6 +36,13 @@ export default {
     </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
+
+    .container{
+
+        h1{
+            padding: 80px 0 20px 0;
+        }
+    }
 
 </style>

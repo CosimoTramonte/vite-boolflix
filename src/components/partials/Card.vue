@@ -43,6 +43,7 @@ export default {
     .ct-card{
         width: 220px;
         height: 330px ;
+        padding: 0 10px 20px 10px;
         cursor: pointer;
         position: relative;
         overflow: hidden;

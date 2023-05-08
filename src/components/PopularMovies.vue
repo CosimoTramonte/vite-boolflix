@@ -3,7 +3,7 @@
 import {store} from "../data/store";
 import Card from "./partials/Card.vue";
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination } from 'swiper';
+import { Pagination,Mousewheel } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -14,11 +14,11 @@ export default {
     components:{
         Card,
         Swiper,
-        SwiperSlide
+        SwiperSlide,
     },
     setup() {
       return {
-        modules: [Pagination],
+        modules: [Pagination, Mousewheel],
       };
     },
     data(){
@@ -31,14 +31,25 @@ export default {
 
 <template>
 
-    <div class="container my-4">
-        <h1>Popular Film</h1>
+    <div class="container py-4">
+
+        <div class="d-flex align-items-center">
+            <h1>Popular Film</h1>
+
+            <div class="buttonDiv px-4">
+                <button class="mx-2 p-1 bg-danger" @click="$emit('prevPage')"> Prev </button>
+                <button class="mx-2 p-1 bg-danger" @click="$emit('nextPage')"> Next </button>
+            </div>
+
+        </div>
+        
 
         <div class="card-container d-flex flex-wrap">
 
             <swiper
             :slidesPerView="1"
             :spaceBetween="30"
+            :mousewheel="true"
             :pagination="{
             clickable: true,
             }"
@@ -67,6 +78,7 @@ export default {
                         :language= "card.original_language"
                         :vote= "Math.round(card.vote_average/2)"
                     />
+
                 </swiper-slide>
 
             </swiper>
@@ -77,4 +89,14 @@ export default {
 
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .buttonDiv{
+
+        button{
+            border-radius: 10px;
+            background-color: #DB202C !important;
+            color: white;
+            font-weight: 500;
+        }
+    }
+</style>

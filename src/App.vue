@@ -5,6 +5,7 @@ import FilmContainer from "./components/FilmContainer.vue";
 import TVSeries from "./components/TVSeries.vue";
 import PopularMovies from "./components/PopularMovies.vue";
 import TopRatedMovies from "./components/TopRatedMovies.vue";
+import InfoCard from "./components/partials/InfoCard.vue";
 import Jumbotron from "./components/Jumbotron.vue";
 import {store} from "./data/store";
 import axios from "axios";
@@ -23,7 +24,8 @@ export default {
     TVSeries,
     PopularMovies,
     TopRatedMovies,
-    Jumbotron
+    Jumbotron,
+    InfoCard
   },
   methods:{
     getApiUpcomingMovies(){
@@ -45,7 +47,7 @@ export default {
       axios.get(store.apiUrlTopRatedMovies, {
         params:{
           language: "it",
-          page: 1
+          page: store.pagesTopRatedMovies
         }
       })
       .then(result =>{
@@ -54,19 +56,51 @@ export default {
       })
     },
 
+    nextPageCallTopMovies(){
+      store.pagesTopRatedMovies++
+      this.getApiTopRatedMovies()
+    },
+
+    prevPageCallTopMovies(){
+      
+      if(store.pagesTopRatedMovies == 0){
+        store.pagesTopRatedMovies == 1
+      } else {
+        store.pagesTopRatedMovies--
+      }
+
+      this.getApiTopRatedMovies()
+    },
+
     getApiPopularMovies(){
       store.resultArrayFilm=[];
       store.resultArrayTVSeries=[];
       axios.get(store.apiUrlPopularMovies, {
         params:{
           language: "it",
-          page: 1
+          page: store.pagesPopularMovies
         }
       })
       .then(result =>{
         store.resultArrayPopularMovies = result.data.results;
         console.log(store.resultArrayPopularMovies);
       })
+    },
+
+    nextPageCall(){
+      store.pagesPopularMovies++
+      this.getApiPopularMovies()
+    },
+
+    prevPageCall(){
+      
+      if(store.pagesPopularMovies == 0){
+        store.pagesPopularMovies == 1
+      } else {
+        store.pagesPopularMovies--
+      }
+
+      this.getApiPopularMovies()
     },
 
     getApiFilm(){
@@ -96,11 +130,9 @@ export default {
     }
   },
   mounted(){
-    this.getApiFilm();
-    this.getApiTVSeries();
     this.getApiPopularMovies();
     this.getApiTopRatedMovies();
-    this.getApiUpcomingMovies()
+    this.getApiUpcomingMovies();
   }
 }
 </script>
@@ -111,18 +143,15 @@ export default {
 
   <div class="homeDiv" v-if=" store.resultArrayTVSeries.length == 0 & store.resultArrayFilm.length == 0" >
     <Jumbotron />
-    <PopularMovies />
-    <TopRatedMovies/>
+    <PopularMovies @nextPage="nextPageCall" @prevPage="prevPageCall" />
+    <TopRatedMovies @nextPage="nextPageCallTopMovies" @prevPage="prevPageCallTopMovies"/>
   </div>
 
   <div class="researhDiv" v-else>
     <FilmContainer />
     <TVSeries />
   </div>
-
-
   
-
 </template>
 
 <style lang="scss">
@@ -132,5 +161,9 @@ export default {
   .researhDiv{
     background-color: #111;
     color: white;
+  }
+
+  .researhDiv{
+    padding-top: 90px;
   }
 </style>

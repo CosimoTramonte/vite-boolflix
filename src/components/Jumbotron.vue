@@ -3,7 +3,7 @@
 import {store} from "../data/store";
 import Card from "./partials/Card.vue";
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination, Navigation } from 'swiper';
+import { Pagination, Navigation, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -17,7 +17,7 @@ export default {
     },
     setup() {
       return {
-        modules: [Pagination, Navigation],
+        modules: [Pagination, Navigation, Autoplay],
       };
     },
     data(){
@@ -32,6 +32,10 @@ export default {
     <swiper
         :slidesPerView="1"
         :spaceBetween="30"
+        :autoplay="{
+            delay: 10000,
+            disableOnInteraction: false,
+        }"
         :loop="true"
         :pagination="{
         clickable: true,
@@ -53,7 +57,7 @@ export default {
 
                 <div class="infoDiv">
 
-                    <h4>{{ card.title }}</h4>
+                    <h1>{{ card.title }}</h1>
                     <h5>{{ card.original_title }}</h5>
                     <p>{{ card.overview }}</p>
                     <div>
@@ -107,6 +111,12 @@ export default {
             z-index: 10;
             bottom: 25%;
             margin-left: 50px;
+
+            p{
+                max-height: 220px;
+                overflow-x: hidden;
+                
+            }
 
             .vote-star{
                 color: #FFAB00;
