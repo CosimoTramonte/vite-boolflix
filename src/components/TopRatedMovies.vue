@@ -32,7 +32,7 @@ export default {
 <template>
 
     <div class="container my-4">
-        <h1>Popular Film</h1>
+        <h1>Top Rated Film</h1>
 
         <div class="card-container d-flex flex-wrap">
 
@@ -59,7 +59,7 @@ export default {
             :modules="modules"
             class="mySwiper"
             >
-                <swiper-slide v-for="(card,index) in store.resultArrayPopularMovies" :key="index">
+                <swiper-slide v-for="(card,index) in store.resultArrayTopRatedMovies" :key="index">
                     <Card 
                         :image="card.poster_path"
                         :title="card.title"

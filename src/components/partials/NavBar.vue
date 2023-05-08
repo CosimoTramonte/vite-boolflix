@@ -9,10 +9,10 @@ export default {
 
     <div class="nav-bar">
         <ul class="nav-list">
-            <li>Home</li>
+            <li @click="$emit('startResearchHome')">Home</li>
             <li>Serie TV</li>
             <li>Film</li>
-            <li @click="$emit('startResearchPopularFilm')">Popolari</li>
+            <li >Popolari</li>
             <li>La mia lista</li>
         </ul>
     </div>

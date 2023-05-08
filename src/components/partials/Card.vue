@@ -45,6 +45,7 @@ export default {
         height: 330px ;
         cursor: pointer;
         position: relative;
+        overflow: hidden;
 
         .imageDiv{
             width: 100%;
