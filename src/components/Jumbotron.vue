@@ -51,7 +51,7 @@ export default {
                 <div class="imageDiv">
 
                     <img  v-if="card.backdrop_path == null" src="../../public/NoImage.png" alt="NoImage">
-                    <img v-else  :src="`https://image.tmdb.org/t/p/w780${card.backdrop_path}`" :alt="card.original_title">
+                    <img v-else  :src="`https://image.tmdb.org/t/p/original${card.backdrop_path}`" :alt="card.original_title">
 
                 </div>
 
