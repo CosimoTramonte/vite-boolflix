@@ -1,15 +1,26 @@
-# BoolFlix
+# vite-boolfolio
 
-Replicare il sito di NetFlix e le sue maggiori features.
+Ciao ragazzi,
+continuiamo a lavorare sul codice dei giorni scorsi, ma in una nuova repo.
+L’esercizio di oggi è suddiviso in milestone ed è importante che ne seguiate l’ordine.
 
-## Steps
-- Progettare la struttura del global state. Partendo da un impostazione base che successivamente verrà cambiata con una struttura più moderna ed elaborata.
-- Creare un layout base con una searchbar (una input e un button) in cui possiamo scrivere completamente o parzialmente il nome di un film.
-- Al click possiamo cercare sull’API tutti i film che contengono ciò che ha scritto l’utente (Titolo, Titolo Originale, Lingua e Voto).
-- Trasformiamo la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API
-- Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv
-- Aggiungiamo la copertina del film o della serie al nostro elenco
-- Trasformiamo poi il voto da 1 a 10 decimale in un numero intero da 1 a 5, così da permetterci di stampare a schermo un numero di stelle piene che vanno da 1 a 5, lasciando le restanti vuote
-- Trasformiamo quello che abbiamo fatto fino ad ora in una vera e propria webapp, creando un layout completo simil-Netflix.
+**Milestone 1**
+nome repo 1: laravel-api
+Aggiungiamo al nostro progetto Laravel una nuovo **Api/ProjectController**. Questo controller risponderà a delle richieste via API e si occuperà di restituire la lista dei progetti presenti nel database in formato json.
+
+**Milestone 2**
+Testiamo la chiamata API tramite Postman o Tunder Client e assicuriamoci di ricevere i dati correttamente.
+
+**Milestone 3**
+nome repo 2: vite-boolfolio
+Iniziamo ad occuparci della parte front-office della nostra applicazione: creiamo un nuovo progetto Vue 3 con Vite e installiamo axios.
+Colleghiamo questo progetto ad una repo separata.
+
+**Milestone 4**
+Nel componente principale della nostra Vue App facciamo una chiamata API all’endpoint costruito nel progetto Laravel (milestone 1) e recuperiamo tutti i progetti dal nostro back-end.
+Stampiamo in console i risultati e verifichiamo di ricevere i dati correttamente.
+
+**Milestone 5**
+Creiamo un nuovo componente ProjectCard, che corrisponde ad una card per visualizzare un progetto. Utilizziamo questo componente per visualizzare tutti i progetti ricevuti tramite API.
 
 
